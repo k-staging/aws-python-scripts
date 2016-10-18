@@ -3,8 +3,6 @@
 import sys
 import boto3
 from boto3.session import Session
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
 
 def alb_describe(profile):
     session = boto3.session.Session(profile_name=profile)
