@@ -11,10 +11,10 @@ pip install boto3
 ### 使い方  
 
 ```
-python ec2_describe.py [awsのprofile名]  
-python rds_describe.py [awsのprofile名]  
-python elb_describe.py [awsのprofile名]  
-python alb_describe.py [awsのprofile名]  
-python elasticache_describe.py [awsのprofile名]  
+python ec2_describe.py [profile] [tag]  
+python rds_describe.py [profile]  
+python elb_describe.py [profile]  
+python alb_describe.py [profile]  
+python elasticache_describe.py [profile]  
 ```
 
