@@ -5,7 +5,7 @@ import boto3
 from boto3.session import Session
 
 def ec2_describe(profile, keyword):
-    session = boto3.session.Session(profile_name=profile)
+    session = boto3.session.Session(profile_name = profile)
     client = session.client('ec2')
     paginator = client.get_paginator('describe_instances')
     page_iterator = paginator.paginate(
@@ -13,7 +13,7 @@ def ec2_describe(profile, keyword):
             {
                 'Name': 'tag-value',
                 'Values': [
-                    '{0}{1}{0}'.format("*",keyword),
+                    '{0}{1}{0}'.format("*", keyword),
                 ]
             }
         ]
@@ -29,7 +29,10 @@ def ec2_describe(profile, keyword):
                 private_ip = ec2['PrivateIpAddress']
                 instance_type = ec2['InstanceType']
                 instance_launchtime = ec2['LaunchTime']
-                print '{0: <40}{1: <15}{2: <15}{3: <60}{4: <20}{5}'.format( instance_nametag, instance_id, instance_type, public_dns, private_ip, instance_launchtime )
+                print '{0: <40}{1: <15}{2: <15}{3: <60}{4: <20}{5}'.format(
+                    instance_nametag, instance_id, instance_type,
+                    public_dns, private_ip, instance_launchtime
+                )
 
 if __name__ == '__main__':
     keyword = ''
