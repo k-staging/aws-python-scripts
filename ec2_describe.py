@@ -3,8 +3,6 @@
 import sys
 import boto3
 from boto3.session import Session
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
 
 def ec2_describe(profile, keyword):
     session = boto3.session.Session(profile_name=profile)
@@ -15,7 +13,7 @@ def ec2_describe(profile, keyword):
             {
                 'Name': 'tag-value',
                 'Values': [
-                    "*" + keyword + "*",
+                    '{0}{1}{0}'.format("*",keyword),
                 ]
             }
         ]
