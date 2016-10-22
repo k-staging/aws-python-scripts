@@ -39,7 +39,7 @@ if __name__ == '__main__':
     argvs = sys.argv
     argc = len(argvs)
     if argc != 2 and argc != 3:
-        print 'python ec2_describe.py [profile_name] {keyword]'
+        print 'python ec2_describe.py [profile] {nametag]'
         quit()
     if argc == 3:
         keyword = argvs[2]
