@@ -12,18 +12,20 @@ def elasticache_describe(profile):
     for page in page_iterator:
         for elasticache in page['CacheClusters']:
             clusterid = elasticache['CacheClusterId']
+            replicaid = ''
+            if 'ReplicationGroupId' in elasticache:
+                replicaid = elasticache['ReplicationGroupId']
             instance_type = elasticache['CacheNodeType']
             engine = elasticache['Engine']
             engine_ver = elasticache['EngineVersion']
             maintenance_window= elasticache['PreferredMaintenanceWindow']
             for elasticache in elasticache['CacheNodes']:
-                nodeid = elasticache['CacheNodeId']
                 endpoint = elasticache['Endpoint']['Address']
                 az = elasticache['CustomerAvailabilityZone']
                 create_time = elasticache['CacheNodeCreateTime']
-                print '{0: <15}{1: <10}{2: <20}{3: <50}{4}{5: <10}{6: <20}{7: %Y-%m-%d %H:%M:%S    }{8: >10}'.format(
-                    clusterid, nodeid, instance_type, endpoint, engine,
-                    engine_ver, az, create_time, maintenance_window
+                print '{0: <20}{1: <15}{2: <20}{3: <50}{4}{5: <10}{6: <20}{7: %Y-%m-%d %H:%M:%S    }{8: >10}'.format(
+                    clusterid, replicaid, instance_type, endpoint,
+                    engine, engine_ver, az, create_time, maintenance_window
                 )
 
 if __name__ == '__main__':

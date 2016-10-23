@@ -29,9 +29,10 @@ def ec2_describe(profile, keyword):
                 private_ip = ec2['PrivateIpAddress']
                 instance_type = ec2['InstanceType']
                 instance_launchtime = ec2['LaunchTime']
-                print '{0: <40}{1: <15}{2: <15}{3: <60}{4: <20}{5}'.format(
+                az = ec2['Placement']['AvailabilityZone']
+                print '{0: <40}{1: <15}{2: <15}{3: <60}{4: <15}{5: <20}{6}'.format(
                     instance_nametag, instance_id, instance_type,
-                    public_dns, private_ip, instance_launchtime
+                    public_dns, private_ip, az, instance_launchtime
                 )
 
 if __name__ == '__main__':
