@@ -12,15 +12,14 @@ def rds_describe(profile):
     for page in page_iterator:
         for rds in page['DBInstances']:
             instance_name = rds['DBInstanceIdentifier']
-            multi_az = rds['MultiAZ']
             instance_type = rds['DBInstanceClass']
             endpoint = rds['Endpoint']['Address']
             engine = rds['Engine']
             engine_ver = rds['EngineVersion']
             az = rds['AvailabilityZone']
             create_time = rds['InstanceCreateTime']
-            print '{0: <20} MultiAZ:{1: <10}{2: <15}{3: <65}{4}{5: <15}{6: <20}{7}'.format(
-                instance_name, multi_az, instance_type, endpoint,
+            print '{0: <20}{1: <15}{2: <80}{3}{4: <10}{5: <17}{6: %Y-%m-%d %H:%M:%S}'.format(
+                instance_name, instance_type, endpoint,
                 engine, engine_ver, az, create_time
             )
 
