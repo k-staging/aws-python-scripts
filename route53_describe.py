@@ -17,6 +17,7 @@ def route53_describe(profile):
             page_iterator = paginator.paginate(HostedZoneId = hosted_zone_id)
             for page in page_iterator:
                 for records in page['ResourceRecordSets']:
+                    ttl = ''
                     resorce_record = ''
                     record_name = records['Name']
                     record_type = records['Type']

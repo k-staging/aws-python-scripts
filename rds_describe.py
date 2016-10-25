@@ -18,7 +18,7 @@ def rds_describe(profile):
             engine_ver = rds['EngineVersion']
             az = rds['AvailabilityZone']
             create_time = rds['InstanceCreateTime']
-            print '{0: <20}{1: <15}{2: <80}{3}{4: <10}{5: <17}{6: %Y-%m-%d %H:%M:%S}'.format(
+            print '{0: <30}  {1: <15} {2: <80} {3} {4: <10} {5: <17} {6: %Y-%m-%d %H:%M:%S}'.format(
                 instance_name, instance_type, endpoint,
                 engine, engine_ver, az, create_time
             )

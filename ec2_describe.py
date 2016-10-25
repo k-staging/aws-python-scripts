@@ -30,7 +30,7 @@ def ec2_describe(profile, keyword):
                 instance_type = ec2['InstanceType']
                 instance_launchtime = ec2['LaunchTime']
                 az = ec2['Placement']['AvailabilityZone']
-                print '{0: <40}{1: <15}{2: <15}{3: <60}{4: <15}{5: <20}{6}'.format(
+                print '{0: <35} {1: <15} {2: <15} {3: <60} {4: <15} {5: <20} {6}'.format(
                     instance_nametag, instance_id, instance_type,
                     public_dns, private_ip, az, instance_launchtime
                 )

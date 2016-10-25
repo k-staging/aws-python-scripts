@@ -23,7 +23,7 @@ def elasticache_describe(profile):
                 endpoint = elasticache['Endpoint']['Address']
                 az = elasticache['CustomerAvailabilityZone']
                 create_time = elasticache['CacheNodeCreateTime']
-                print '{0: <25}{1: <15}{2: <20}{3: <60}{4}{5: <10}{6: <20}{7: %Y-%m-%d %H:%M:%S}'.format(
+                print '{0: <20} {1: <20} {2: <20} {3: <60} {4}{5: <10} {6: <20} {7: %Y-%m-%d %H:%M:%S}'.format(
                     clusterid, replicaid, instance_type, endpoint,
                     engine, engine_ver, az, create_time
                 )
