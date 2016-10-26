@@ -26,12 +26,14 @@ def ec2_describe(profile, keyword):
                         instance_nametag = nametag['Value']
                 instance_id = ec2['InstanceId']
                 public_dns = ec2['PublicDnsName']
-                private_ip = ec2['PrivateIpAddress']
+                private_ip = ''
+                if 'PrivateIpAddress' in ec2:
+                    private_ip = ec2['PrivateIpAddress']
                 instance_type = ec2['InstanceType']
                 instance_launchtime = ec2['LaunchTime']
                 az = ec2['Placement']['AvailabilityZone']
                 print '{0: <35} {1: <15} {2: <15} {3: <60} {4: <15} {5: <20} {6}'.format(
-                    instance_nametag, instance_id, instance_type,
+                    instance_nametag.encode('utf-8'),instance_id, instance_type,
                     public_dns, private_ip, az, instance_launchtime
                 )
 
