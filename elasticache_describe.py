@@ -23,9 +23,9 @@ def elasticache_describe(profile):
                 endpoint = elasticache['Endpoint']['Address']
                 az = elasticache['CustomerAvailabilityZone']
                 create_time = elasticache['CacheNodeCreateTime']
-                print '{0: <20} {1: <20} {2: <20} {3: <60} {4}{5: <10} {6: <20} {7: %Y-%m-%d %H:%M:%S}'.format(
-                    clusterid, replicaid, instance_type, endpoint,
-                    engine, engine_ver, az, create_time
+                print '{0: <20} {1: <17} {2: <60} {3}{4: <7} {5: <12} {6: %Y-%m-%d-%H:%M}  {7}'.format(
+                    clusterid, instance_type, endpoint, engine,
+                    engine_ver, az, create_time, replicaid
                 )
 
 if __name__ == '__main__':
