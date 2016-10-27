@@ -25,17 +25,18 @@ def ec2_describe(profile, keyword):
                     if nametag['Key'] == 'Name':
                         instance_nametag = nametag['Value']
                         instance_nametag = instance_nametag.encode('utf-8')
+                instance_id = ec2['InstanceId']
+                state = ec2['State']['Name']
+                instance_type = ec2['InstanceType']
+                public_dns = ec2['PublicDnsName']
                 private_ip = ''
                 if 'PrivateIpAddress' in ec2:
                     private_ip = ec2['PrivateIpAddress']
-                instance_id = ec2['InstanceId']
-                public_dns = ec2['PublicDnsName']
-                instance_type = ec2['InstanceType']
-                instance_launchtime = ec2['LaunchTime']
                 az = ec2['Placement']['AvailabilityZone']
-                print '{0: <35} {1: <12} {2: <12} {3: <57} {4: <14} {5: <12} {6: %Y-%m-%d-%H:%M}'.format(
-                    instance_nametag,instance_id, instance_type,
-                    public_dns, private_ip, az, instance_launchtime
+                launchtime = ec2['LaunchTime']
+                print '{0: <35} {1: <12} {2: <12} {3: <12} {4: <57} {5: <14} {6: <12} {7: %Y-%m-%d_%H:%M}'.format(
+                    instance_nametag, instance_id, state, instance_type,
+                    public_dns, private_ip, az, launchtime
                 )
 
 if __name__ == '__main__':
