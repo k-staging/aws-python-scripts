@@ -26,13 +26,16 @@ def route53_describe(profile):
                     if 'ResourceRecords' in records:
                         for records in records['ResourceRecords']:
                             resorce_record = '{0} {1}'.format(resorce_record, records['Value'])
-                        print '{0: <60} {1: <9} {2: <9} {3: <15}'.format(record_name, ttl, record_type, resorce_record)
+                        print '{0: <60} {1: <9} {2: <9} {3: <15}'.format(
+                            record_name, ttl, record_type, resorce_record
+                        )
                     if 'AliasTarget' in records:
                         alias_target = records['AliasTarget']['DNSName']
-                        print '{0: <60} {1: <9} {2: <9}  {3: <15}'.format(record_name, ttl, record_type, alias_target)
+                        print '{0: <60} {1: <9} {2: <9}  {3: <15}'.format(
+                            record_name, ttl, record_type, alias_target
+                        )
 
 if __name__ == '__main__':
-    keyword = ''
     argvs = sys.argv
     argc = len(argvs)
     if argc != 2:
