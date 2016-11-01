@@ -3,17 +3,15 @@
 import sys
 import boto3
 from boto3.session import Session
-import pprint
-pp = pprint.PrettyPrinter()
 
 def s3_describe(profile):
-    session = boto3.session.Session(profile_name=profile)
+    session = boto3.session.Session(profile_name = profile)
     client = session.client('s3')
     s3 = client.list_buckets()
     for s3 in s3['Buckets']:
         bucket_name = s3['Name']
         create_time = s3['CreationDate']
-        print '{0: <50}  {1: %Y-%m-%d %H:%M:%S}'.format(
+        print '{0: <50}  {1: %Y-%m-%d-%H:%M}'.format(
             bucket_name, create_time
         )
 
