@@ -18,9 +18,12 @@ def rds_describe(profile):
             engine_ver = rds['EngineVersion']
             az = rds['AvailabilityZone']
             create_time = rds['InstanceCreateTime']
-            print '{0: <30}  {1: <15} {2: <80} {3} {4: <10} {5: <17} {6: %Y-%m-%d %H:%M:%S}'.format(
+            pg_name = ''
+            for rds_pg in rds['DBParameterGroups']:
+                pg_name = '{0} {1}'.format(pg_name, rds_pg['DBParameterGroupName'])
+            print '{0: <30}  {1: <15} {2: <80} {3} {4: <10} {5: <17} {6: <17} {7: %Y-%m-%d-%H:%M}'.format(
                 instance_name, instance_type, endpoint,
-                engine, engine_ver, az, create_time
+                engine, engine_ver, pg_name, az, create_time
             )
 
 if __name__ == '__main__':
