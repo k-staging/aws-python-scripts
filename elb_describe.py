@@ -20,7 +20,9 @@ def elb_describe(profile):
                 instance_port = elb_listener['Listener']['InstancePort']
                 elb_port = elb_listener['Listener']['LoadBalancerPort']
                 listener = '{0} {1} to {2}.'.format(listener, elb_port, instance_port)
-            print '{0: <30} {1: <17} {2: <75} {3: %Y-%m-%d-%H:%M}  {4}'.format(elb_name, scheme, dns_name, create_time, listener)
+            print '{0: <30} {1: <17} {2: <75} {3: %Y-%m-%d-%H:%M}  {4}'.format(
+                elb_name, scheme, dns_name, create_time, listener
+            )
 
 if __name__ == '__main__':
     argvs = sys.argv
@@ -29,6 +31,6 @@ if __name__ == '__main__':
     if (argc != 2):
         print 'python elb_describe.py [profile]'
         quit()
-
     profile = argvs[1]
+
     elb_describe(profile)
