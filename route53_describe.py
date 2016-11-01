@@ -36,6 +36,7 @@ def route53_describe(profile):
                         )
 
 if __name__ == '__main__':
+    keyword = ''
     argvs = sys.argv
     argc = len(argvs)
     if argc != 2:
