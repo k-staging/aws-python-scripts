@@ -17,5 +17,6 @@ python elb_describe.py [profile]
 python alb_describe.py [profile]  
 python elasticache_describe.py [profile]  
 python route53_describe.py [profile]  
+python s3_describe.py [profile]  
 ```
 
