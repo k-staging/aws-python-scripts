@@ -20,7 +20,7 @@ def rds_event_describe(profile):
         all_event_category = page['EventCategories']
         remove_target = [
             'availability','backup','configuration change',
-            'creation','deletion','restoration'
+            'creation','deletion','notification','restoration'
         ]
         describe_event_category = []
         for all_event_category in all_event_category:
