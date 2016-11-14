@@ -32,7 +32,7 @@ if __name__ == '__main__':
     argvs = sys.argv
     argc = len(argvs)
     if argc != 2:
-        print 'python ec2_describe.py [profile]'
+        print 'python elasticache_describe.py [profile]'
         quit()
     profile = argvs[1]
 
