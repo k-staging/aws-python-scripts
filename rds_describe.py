@@ -21,7 +21,7 @@ def rds_describe(profile):
             pg_name = ''
             for rds_pg in rds['DBParameterGroups']:
                 pg_name = '{0} {1}'.format(pg_name, rds_pg['DBParameterGroupName'])
-            print '{0: <30}  {1: <15} {2: <80} {3} {4: <10} {5: <17} {6: <17} {7: %Y-%m-%d-%H:%M}'.format(
+            print '{0: <30}  {1: <13} {2: <65} {3}{4: <7} {5: <11} {6: <13} {7: %Y-%m-%d-%H:%M}'.format(
                 instance_name, instance_type, endpoint,
                 engine, engine_ver, pg_name, az, create_time
             )
