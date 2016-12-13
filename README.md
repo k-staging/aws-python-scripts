@@ -1,6 +1,6 @@
 ### このスクリプトについて  
 
-EC2,RDS,ELB,ElastiCache,Route53の一覧を表示します。  
+EC2,RDS,ELB(ALB),ElastiCache,Route53,S3の一覧を表示します。  
 
 
 ### 必要なもの  
