@@ -4,7 +4,8 @@ import sys
 import boto3
 from boto3.session import Session
 
-def rds_describe(profile):
+def describe(profile):
+    rds_describe = []
     session = boto3.session.Session(profile_name=profile)
     client = session.client('rds')
     paginator = client.get_paginator('describe_db_instances')
@@ -21,10 +22,13 @@ def rds_describe(profile):
             pg_name = ''
             for rds_pg in rds['DBParameterGroups']:
                 pg_name = '{0} {1}'.format(pg_name, rds_pg['DBParameterGroupName'])
-            print '{0: <30}  {1: <13} {2: <65} {3}{4: <7} {5: <11} {6: <13} {7: %Y-%m-%d-%H:%M}'.format(
+            describe = '{0: <30}  {1: <13} {2: <65} {3}{4: <7} {5: <11} {6: <13} {7: %Y-%m-%d-%H:%M}'.format(
                 instance_name, instance_type, endpoint,
                 engine, engine_ver, pg_name, az, create_time
             )
+            if describe is not None:
+                rds_describe.append(describe)
+        return rds_describe
 
 if __name__ == '__main__':
     argvs = sys.argv
@@ -33,5 +37,6 @@ if __name__ == '__main__':
         print 'example: python rds_describe.py [profile_name]'
         quit()
     profile = argvs[1]
-
-    rds_describe(profile)
+    rds_describe = describe(profile)
+    for rds_describe in rds_describe:
+        print rds_describe

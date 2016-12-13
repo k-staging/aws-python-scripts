@@ -4,7 +4,8 @@ import sys
 import boto3
 from boto3.session import Session
 
-def elb_describe(profile):
+def describe(profile):
+    elb_describe = []
     session = boto3.session.Session(profile_name=profile)
     client = session.client('elb')
     paginator = client.get_paginator('describe_load_balancers')
@@ -20,17 +21,20 @@ def elb_describe(profile):
                 instance_port = elb_listener['Listener']['InstancePort']
                 elb_port = elb_listener['Listener']['LoadBalancerPort']
                 listener = '{0} {1} to {2}.'.format(listener, elb_port, instance_port)
-            print '{0: <30} {1: <17} {2: <75} {3: %Y-%m-%d-%H:%M}  {4}'.format(
+            describe = '{0: <30} {1: <17} {2: <75} {3: %Y-%m-%d-%H:%M}  {4}'.format(
                 elb_name, scheme, dns_name, create_time, listener
             )
+            if describe is not None:
+                elb_describe.append(describe)
+        return elb_describe
 
 if __name__ == '__main__':
     argvs = sys.argv
     argc = len(argvs)
-
     if (argc != 2):
         print 'python elb_describe.py [profile]'
         quit()
     profile = argvs[1]
-
-    elb_describe(profile)
+    elb_describe = describe(profile)
+    for elb_describe in elb_describe:
+        print elb_describe

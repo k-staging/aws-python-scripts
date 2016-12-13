@@ -4,7 +4,8 @@ import sys
 import boto3
 from boto3.session import Session
 
-def route53_describe(profile):
+def describe(profile):
+    route53_describe = []
     session = boto3.session.Session(profile_name = profile)
     client = session.client('route53')
     paginator = client.get_paginator('list_hosted_zones')
@@ -26,14 +27,16 @@ def route53_describe(profile):
                     if 'ResourceRecords' in records:
                         for records in records['ResourceRecords']:
                             resorce_record = '{0} {1}'.format(resorce_record, records['Value'])
-                        print '{0: <60} {1: <9} {2: <9} {3: <15}'.format(
+                        describe = '{0: <60} {1: <9} {2: <9} {3: <15}'.format(
                             record_name, ttl, record_type, resorce_record
                         )
                     if 'AliasTarget' in records:
                         alias_target = records['AliasTarget']['DNSName']
-                        print '{0: <60} {1: <9} {2: <9}  {3: <15}'.format(
+                        describe = '{0: <60} {1: <9} {2: <9}  {3: <15}'.format(
                             record_name, ttl, record_type, alias_target
                         )
+                    route53_describe.append(describe)
+    return route53_describe
 
 if __name__ == '__main__':
     keyword = ''
@@ -43,5 +46,6 @@ if __name__ == '__main__':
         print 'python ec2_describe.py [profile]'
         quit()
     profile = argvs[1]
-
-    route53_describe(profile)
+    route53_describe = describe(profile)
+    for route53_describe in route53_describe:
+        print route53_describe

@@ -5,7 +5,8 @@ import boto3
 from boto3.session import Session
 from datetime import datetime, timedelta
 
-def rds_event_describe(profile):
+def describe(profile):
+    rds_event_describe = []
     session = boto3.session.Session(profile_name = profile)
     client = session.client('rds')
     #################################
@@ -19,8 +20,8 @@ def rds_event_describe(profile):
         #############################################################################
         all_event_category = page['EventCategories']
         remove_target = [
-            'availability','backup','configuration change',
-            'creation','deletion','notification','restoration'
+            'backup','configuration change','creation',
+            'deletion','notification','restoration'
         ]
         describe_event_category = []
         for all_event_category in all_event_category:
@@ -44,9 +45,12 @@ def rds_event_describe(profile):
             source_identifier = event_log['SourceIdentifier']
             event_category = event_log['EventCategories']
             message = event_log['Message']
-            print '{0: %Y-%m-%d-%H:%M} {1} {2} {3}'.format(
+            describe = '{0: %Y-%m-%d-%H:%M} {1} {2} {3}'.format(
                 date, source_identifier, event_category, message
             )
+            if describe is not None:
+                rds_event_describe.append(describe)
+        return rds_event_describe
 
 if __name__ == '__main__':
     argvs = sys.argv
@@ -55,5 +59,6 @@ if __name__ == '__main__':
         print 'example: python rds_event_describe.py [profile]'
         quit()
     profile = argvs[1]
-
-    rds_event_describe(profile)
+    rds_event_describe = describe(profile)
+    for rds_event_describe in rds_event_describe:
+        print rds_event_describe

@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 ######################################################
 # 取得したイベントログにフィルターを掛け、結果を出力
 ######################################################
-def print_log(event_log):
+def filter_log(event_log):
     filter_messages = [
         'Finished recovery','Recovering cache',
         'scheduled for replacement','The replacement',
@@ -20,14 +20,16 @@ def print_log(event_log):
             date = event_log['Date']
             source_identifier = event_log['SourceIdentifier']
             message = event_log['Message']
-            print '{0: %Y-%m-%d-%H:%M} {1} {2}'.format(
+            return_log = '{0: %Y-%m-%d-%H:%M} {1} {2}'.format(
                 date, source_identifier, message
             )
+            return return_log
 
 #######################
 # イベントログを取得
 #######################
-def elasticache_event_describe(profile):
+def describe(profile):
+    elasticache_logs = []
     session = boto3.session.Session(profile_name = profile)
     client = session.client('elasticache')
     paginator = client.get_paginator('describe_events')
@@ -40,8 +42,10 @@ def elasticache_event_describe(profile):
     )
     for page in page_iterator:
         for event_log in page['Events']:
-            print_log(event_log)
-
+            return_log = filter_log(event_log)
+            if return_log is not None:
+                elasticache_logs.append(return_log)
+        return elasticache_logs
 
 if __name__ == '__main__':
     argvs = sys.argv
@@ -51,4 +55,6 @@ if __name__ == '__main__':
         quit()
     profile = argvs[1]
 
-    elasticache_event_describe(profile)
+    elasticache_logs = describe(profile)
+    for elasticache_logs in elasticache_logs:
+        print elasticache_logs
