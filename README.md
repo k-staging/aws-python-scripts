@@ -11,7 +11,7 @@ boto3のインストール
 pip install boto3  
 ```
 
-.bashrcなどに下記を追記  
+.bashrcなどにcredentialsのpathを追記  
 
 ```
 export AWS_CONFIG_FILE=~/.aws/credentials  
