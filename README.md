@@ -20,7 +20,7 @@ export AWS_CONFIG_FILE=~/.aws/credentials
 
 ### 使い方  
 基本的に```python スクリプト名 [profile]```で動く  
-ec2_describe.pyのみnane_tagを指定可能  
+ec2_describe.pyのみname_tagを指定可能  
 
 ```
 python alb_describe.py [profile]  
