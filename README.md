@@ -5,7 +5,7 @@ EC2,RDS,ELB(ALB),ElastiCache,Route53,S3の一覧を表示する
 
 ### 必要なもの  
 
-boto3のインストール
+python2.7環境でboto3をインストール  
 
 ```
 pip install boto3  
