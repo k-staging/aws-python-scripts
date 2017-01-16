@@ -16,7 +16,7 @@ def describe(profile):
             iam_user_arn = iam_user['Arn']
             if 'PasswordLastUsed' in iam_user:
                 last_used = iam_user['PasswordLastUsed']
-            describe = '{0: <13} {1: <50} {2}'.format(
+            describe = '{0: <30} {1: <60} {2}'.format(
                 iam_user_name, iam_user_arn, last_used
             )
             if describe is not None:
