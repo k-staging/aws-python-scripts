@@ -20,7 +20,7 @@ def describe(profile):
         )
         if describe is not None:
             alb_describe.append(describe)
-        return alb_describe
+    return alb_describe
 
 if __name__ == '__main__':
     argvs = sys.argv
