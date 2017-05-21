@@ -33,10 +33,11 @@ def describe(profile, keyword):
                 if 'PrivateIpAddress' in ec2:
                     private_ip = ec2['PrivateIpAddress']
                 az = ec2['Placement']['AvailabilityZone']
+                key_pair = ec2['KeyName']
                 launchtime = ec2['LaunchTime']
-                describe = '{0: <35} {1: <12} {2: <12} {3: <12} {4: <57} {5: <14} {6: <12} {7: %Y-%m-%d-%H:%M}'.format(
+                describe = '{0: <20} {1: <20} {2: <10} {3: <10} {4: <57} {5: <15} {6: <20} {7: <10} {8: %Y-%m-%d-%H:%M}'.format(
                     instance_nametag, instance_id, state, instance_type,
-                    public_dns, private_ip, az, launchtime
+                    public_dns, private_ip, az, key_pair, launchtime
                 )
                 if describe is not None:
                     ec2_describe.append(describe)
