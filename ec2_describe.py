@@ -14,7 +14,7 @@ class GetParameter:
         keyword = ''
         if len(self.args) == 2 or len(self.args) == 3:
             profile = self.args[1]
-        elif len(self.args) == 3:
+        if len(self.args) == 3:
             keyword = self.args[2]
 
         return profile, keyword
